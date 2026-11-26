@@ -31,6 +31,8 @@ public class Kafe15 {
         }
         double total = hitungDiskon(totalBayar, "", isMember, sc);
         System.out.println("\n===== STRUK PEMBAYARAN =====");
+        System.out.println("Total Sebelum Diskon: Rp" + totalBayar);
+        System.out.println("Total potongan : Rp" + (totalBayar - total));
         System.out.println("Total pembayaran: Rp" + total);
         System.out.println("Terima kasih telah berkunjung!");
 
