@@ -1,8 +1,8 @@
 public class namaPengunjung15  {
     public static void main(String [] args){
-        daftarPengunjung("Ali", "Budi", "Citra");
-        daftarPengunjung("Andi");
-        daftarPengunjung("Doni", "Eti", "Fahmi", "Galih");
+        daftarPengunjung();
+        daftarPengunjung();
+        daftarPengunjung();
     }
     static void daftarPengunjung(String... namaPengunjung) {
         System.out.println("Daftar Nama Pengunjung:");    
