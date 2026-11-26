@@ -27,4 +27,8 @@ public class HitungBalok15 {
     int volume = hitungLuas(a, b) * tinggi;    
     return volume;
     }
+    static int hitungluasPermukaan(int p,int l, int t){
+    int LP = 2 * ((p*l) + (p*t) + (l*t));
+    return LP;
+}
 }
