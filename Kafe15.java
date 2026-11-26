@@ -7,7 +7,7 @@ public class Kafe15 {
     int pilihanMenu = sc.nextInt();
     System.out.print("Masukkan jumlah item yang ingin dipesan: ");   
     int banyakItem = sc.nextInt();    
-    int totalBayar = hitungTotalHargaNoAbsen(pilihanMenu, banyakItem);    
+    int totalBayar = hitungTotalHarga15(pilihanMenu, banyakItem);    
     System.out.println("Total harga untuk pesanan Anda: Rp" + totalBayar);
 }
     
