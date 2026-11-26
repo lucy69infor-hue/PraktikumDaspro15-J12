@@ -7,7 +7,8 @@ public class Kafe15 {
     int pilihanMenu = sc.nextInt();
     System.out.print("Masukkan jumlah item yang ingin dipesan: ");   
     int banyakItem = sc.nextInt();    
-    System.out.println("Total harga untuk pesanan Anda: Rp" + hitungTotalHarga15 (pilihanMenu,banyakItem));
+    int totalBayar = hitungTotalHarga15(pilihanMenu, banyakItem);    
+    System.out.println("Total harga untuk pesanan Anda: Rp" + totalBayar);
 }
     
     public static void menu() {
@@ -39,6 +40,7 @@ public class Kafe15 {
     }
     public static int hitungTotalHarga15(int pilihanMenu, int banyakItem) {    
     int[] hargaItems = {15000, 20000, 22000, 12000, 10000, 18000};    
-    int hargaTotal = hargaItems[pilihanMenu - 1] * banyakItem;    
+    int hargaTotal = hargaItems[pilihanMenu - 1] * banyakItem;
+    return hargaTotal;    
     }
 }
