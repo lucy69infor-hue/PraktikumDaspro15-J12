@@ -1,30 +1,54 @@
 import java.util.Scanner;
 public class Kafe15 {
     public static void main(String[] args) {    
-    Scanner sc = new Scanner(System.in);   
-    menu();    
-    System.out.print("\nMasukkan nomor menu yang ingin Anda pesan: ");    
-    int pilihanMenu = sc.nextInt();
-    System.out.print("Masukkan jumlah item yang ingin dipesan: ");   
-    int banyakItem = sc.nextInt();    
-    int totalBayar = hitungTotalHarga15(pilihanMenu, banyakItem);    
-    System.out.println("Total harga untuk pesanan Anda: Rp" + totalBayar);
+    Scanner sc = new Scanner(System.in);       
+    boolean lanjut = true;
+    int totalBayar = 0;
+    int subtotal = 0;
+    boolean isMember = menu(sc);
+    while (lanjut) {
+
+            System.out.print("\nMasukkan nomor menu yang ingin Anda pesan: ");
+            int pilihanMenu = sc.nextInt();
+
+            System.out.print("Masukkan jumlah item yang ingin dipesan: ");
+            int banyakItem = sc.nextInt();
+
+            subtotal = hitungTotalHarga15(pilihanMenu, banyakItem);
+
+            totalBayar += subtotal;
+
+            System.out.println("Subtotal pesanan: Rp" + subtotal);
+            System.out.println("Total sementara: Rp" + totalBayar);
+
+            System.out.print("\nApakah ingin memesan menu lain? (y/n): ");
+            char jawaban = sc.next().charAt(0);
+
+            if (jawaban == 'n' || jawaban == 'N') {
+                lanjut = false;
+            }
+        }
+        double total = hitungDiskon(totalBayar, "", isMember, sc);
+        System.out.println("\n===== STRUK PEMBAYARAN =====");
+        System.out.println("Total pembayaran: Rp" + total);
+        System.out.println("Terima kasih telah berkunjung!");
+
+        sc.close();
 }
-    
-    public static void menu() {
-        Scanner input = new Scanner(System.in);
+        
+    public static boolean menu(Scanner sc) {
         System.out.println("Selamat datang!, Masukkan nama Anda :");
-        String namaPelanggan = input.nextLine();
+        String namaPelanggan = sc.nextLine();
         System.out.println("Selamat datang,"+ namaPelanggan + "!");
         System.out.println("Apakah anda seorang member ? (true/false)");
-        boolean isMember = input.nextBoolean();
+        boolean isMember = sc.nextBoolean();
         if (isMember){
             System.out.println("Anda adalah member, dapatkan diskon 10% untuk setiap pembelian!");
         } else {
             System.out.println("Maaf anda bukan member, diskon 10% hanya diberikan kepada member saja");
         }
         System.out.println("Jam kunjung " + namaPelanggan + ": ");
-        int jam = input.nextInt();
+        int jam = sc.nextInt();
         if (jam >= 14 && jam <= 16){
             System.out.println("Happy hour!, Anda mendapatkan Diskon 20% untuk seluruh minuman");
         }
@@ -37,10 +61,43 @@ public class Kafe15 {
         System.out.println("6. Mie Goreng - Rp 18,000");    
         System.out.println("==========================");    
         System.out.println("Silakan pilih menu yang Anda inginkan.");
+        return isMember;
     }
+
     public static int hitungTotalHarga15(int pilihanMenu, int banyakItem) {    
     int[] hargaItems = {15000, 20000, 22000, 12000, 10000, 18000};    
     int hargaTotal = hargaItems[pilihanMenu - 1] * banyakItem;
     return hargaTotal;    
     }
-}
+
+    
+    public static double hitungDiskon(int totalBayar, String kodePromo, boolean isMember, Scanner sc) {
+
+    double total = totalBayar;
+
+    if (isMember == true) {
+        total = total - (total * 0.1);
+    }
+
+    System.out.println("Apakah Anda mempunyai kode promo? (Y/N)");
+    char jawaban = sc.next().charAt(0);
+
+    if (jawaban == 'y' || jawaban == 'Y') {
+
+        System.out.println("Masukkan kode promo:");
+        kodePromo = sc.next();
+
+        if (kodePromo.equalsIgnoreCase("DISKON50")) {
+            total = total - (total * 0.5);
+
+        } else if (kodePromo.equalsIgnoreCase("DISKON30")) {
+            total = total - (total * 0.3);
+
+        } else {
+            System.out.println("Maaf, kode tidak terdaftar");
+        }
+    }
+
+    return total;
+    }
+} 
